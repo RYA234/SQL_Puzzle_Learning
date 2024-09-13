@@ -1,0 +1,42 @@
+services:
+  postgresql:
+    # image: postgres:11.7
+    container_name: postgresql
+    build: ./docker/postgresql
+    environment:
+      TZ: 'Asia/Tokyo'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: pass
+      # PGDATA: /var/lib/postgresql/data/pgdata
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgresql/init:/docker-entrypoint-initdb.d
+      - ./src:/src
+       - db-data:/var/lib/postgresql/data
+    # restart: always
+
+  pgadmin4:
+    image: dpage/pgadmin4:8.4
+    ports:
+      - 8080:8080
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+      # PassFileも一緒に配置したかったが、下記を参考にしてもうまくいかなかった
+      # https://stackoverflow.com/questions/66578506/where-is-the-pgpass-file-in-pgadmin4-docker-container-when-this-file-is-mounted
+      - ./config/servers.json:/pgadmin4/servers.json
+      - ./src:/src
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user@example.com
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: "False"
+      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
+      PGADMIN_LISTEN_PORT: 8080
+      PGADMIN_CONFIG_PROXY_X_HOST_COUNT: 1
+      PGADMIN_CONFIG_PROXY_X_PREFIX_COUNT: 1
+    depends_on:
+      - postgresql
+
+volumes:
+  db-data:
+  pgadmin-data:
