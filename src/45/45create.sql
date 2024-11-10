@@ -1,4 +1,4 @@
-
+-- 4502 投稿準備完了
 DROP TABLE IF EXISTS FriendsofPepperoni;
 --重複行があるというので、主キーなし
 CREATE TABLE FriendsofPepperoni
