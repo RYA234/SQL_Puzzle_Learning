@@ -1,0 +1,32 @@
+DROP TABLE IF EXISTS Items;
+CREATE TABLE Items
+(item_nbr INTEGER,
+ item_descr CHAR(10));
+
+DROP TABLE IF EXISTS Actuals;
+CREATE TABLE Actuals
+(item_nbr   INTEGER, 
+ actual_amt DECIMAL(5,2),
+ check_nbr  CHAR(4));
+
+DROP TABLE IF EXISTS Estimates;
+CREATE TABLE Estimates
+(item_nbr      INTEGER, 
+ estimated_amt DECIMAL(5,2));
+
+INSERT INTO Items VALUES(10, 'Item 10');
+INSERT INTO Items VALUES(20, 'Item 20');
+INSERT INTO Items VALUES(30, 'Item 30');
+INSERT INTO Items VALUES(40, 'Item 40');
+INSERT INTO Items VALUES(50, 'item 50');
+
+INSERT INTO Actuals VALUES(10, 300.00, '1111');
+INSERT INTO Actuals VALUES(20, 325.00, '2222');
+INSERT INTO Actuals VALUES(20, 100.00, '3333');
+INSERT INTO Actuals VALUES(30, 525.00, '1111');
+
+INSERT INTO Estimates VALUES(10, 300.00);
+INSERT INTO Estimates VALUES(10, 50.00);
+INSERT INTO Estimates VALUES(20, 325.00);
+INSERT INTO Estimates VALUES(20, 110.00);
+INSERT INTO Estimates VALUES(40, 25.00);
