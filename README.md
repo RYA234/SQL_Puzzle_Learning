@@ -6,20 +6,21 @@
 
 
 # 開発環境
-名前|Version｜説明
+
+名前|Version|説明
 ---|--------|----
 Ubuntu|22.04|OS
 PostgreSQL|14|RDBMS
 pgAdmin4|8.4|ブラウザで動くpostgresql クライアントソフト
-Docker||コンテナ型仮想環境
-Github CodeSpaces||クラウドIDE
+Docker|??|コンテナ型仮想環境
+Github CodeSpaces|??|クラウドIDE
 
 
 工夫した点
 どの端末でも動かせるように github Codespacesを使ったところです。
 ただし　ブラウザとgithubのアカウントは必要
 欠点としては、
-　一定時間操作しないと切れること
+　一定時間操作しないと切れること １５分ぐらい操作してないと切れますね。
 　無料枠を超えると課金
 
 
