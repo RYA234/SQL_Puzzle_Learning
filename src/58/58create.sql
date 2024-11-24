@@ -1,4 +1,4 @@
--- p238 欠番探し　バージョン２
+-- p238  58 欠番探し　バージョン２
 drop table if exists tickets;
 
 CREATE TABLE Tickets
