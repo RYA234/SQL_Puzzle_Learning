@@ -4,11 +4,23 @@ CREATE TABLE Numbers (seq INTEGER NOT NULL PRIMARY KEY);
 
 INSERT INTO Numbers VALUES (2);
 INSERT INTO Numbers VALUES (3);
+INSERT INTO Numbers VALUES (4);
 INSERT INTO Numbers VALUES (5);
+INSERT INTO Numbers VALUES (6);
 INSERT INTO Numbers VALUES (7);
 INSERT INTO Numbers VALUES (8);
-INSERT INTO Numbers VALUES (14);
-INSERT INTO Numbers VALUES (20);
+
+DROP TABLE IF EXISTS Numbers_no_seq;
+CREATE TABLE Numbers_no_seq (seq INTEGER NOT NULL PRIMARY KEY);
+
+INSERT INTO Numbers_no_seq VALUES (2);
+INSERT INTO Numbers_no_seq VALUES (3);
+INSERT INTO Numbers_no_seq VALUES (5);
+INSERT INTO Numbers_no_seq VALUES (7);
+INSERT INTO Numbers_no_seq VALUES (8);
+INSERT INTO Numbers_no_seq VALUES (14);
+INSERT INTO Numbers_no_seq VALUES (20);
+
 
 drop table if exists sequence_1;
 CREATE Table  sequence_1 (seq INTEGER NOT NULL PRIMARY KEY);
