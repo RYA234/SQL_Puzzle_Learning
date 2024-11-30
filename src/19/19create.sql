@@ -1,3 +1,4 @@
+-- 19 セールスマンの売上ランキング その１
 drop Table if EXISTS SalesData;
 CREATE TABLE SalesData
 (district_nbr INTEGER NOT NULL,
