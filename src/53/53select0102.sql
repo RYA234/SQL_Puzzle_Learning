@@ -1,3 +1,4 @@
+--　p223 53 テーブルを列ごとに折りたたむ　その１　方法２
 SELECT  MIN(CASE WHEN Foobar.lvl = M.lc
                 THEN Foobar.color END) AS color,
         MIN(CASE WHEN Foobar.lvl = M.ll

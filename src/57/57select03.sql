@@ -1,4 +1,4 @@
-SELECT seq FROm sequence_1
+SELECT seq FROM sequence_1
 WHERE seq <= (SELECT MAX(seq) FROM Numbers)
 EXCEPT ALL
 SELECT seq FROM Numbers;
