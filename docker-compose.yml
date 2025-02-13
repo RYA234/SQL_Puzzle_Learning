@@ -13,7 +13,7 @@ services:
     volumes:
       - ./docker/postgresql/init:/docker-entrypoint-initdb.d
       - ./src:/src
-       - db-data:/var/lib/postgresql/data
+      - db-data:/var/lib/postgresql/data
     # restart: always
 
   pgadmin4:
