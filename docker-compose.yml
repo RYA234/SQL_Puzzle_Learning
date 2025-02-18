@@ -2,11 +2,11 @@ services:
   postgresql:
     # image: postgres:11.7
     container_name: postgresql
-    build: ./docker/postgresql
+    build: ./docker/postgresql 
     environment:
       TZ: 'Asia/Tokyo'
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: pass
+      POSTGRES_PASSWORD: postgres
       # PGDATA: /var/lib/postgresql/data/pgdata
     ports:
       - "5432:5432"
@@ -15,28 +15,31 @@ services:
       - ./src:/src
       - db-data:/var/lib/postgresql/data
     # restart: always
-
-  pgadmin4:
-    image: dpage/pgadmin4:8.4
-    ports:
-      - 8080:8080
-    volumes:
-      - pgadmin-data:/var/lib/pgadmin
-      # PassFileも一緒に配置したかったが、下記を参考にしてもうまくいかなかった
-      # https://stackoverflow.com/questions/66578506/where-is-the-pgpass-file-in-pgadmin4-docker-container-when-this-file-is-mounted
-      - ./config/servers.json:/pgadmin4/servers.json
-      - ./src:/src
+    networks:
+      external_11:
+  oracle_db:
+    image: oracle/database:23.5.0-free
+    # build: ./docker/oracle
+    container_name: oracle_test_db
+    shm_size: 1g # 共有メモリを1GB以上にしないとコンテナ起動時にエラーが発生します。
     environment:
-      PGADMIN_DEFAULT_EMAIL: user@example.com
-      PGADMIN_DEFAULT_PASSWORD: password
-      PGADMIN_CONFIG_SERVER_MODE: "False"
-      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: "False"
-      PGADMIN_LISTEN_PORT: 8080
-      PGADMIN_CONFIG_PROXY_X_HOST_COUNT: 1
-      PGADMIN_CONFIG_PROXY_X_PREFIX_COUNT: 1
-    depends_on:
-      - postgresql
+      - TZ=Asia/Tokyo
+      - LANGUAGE=ja_JP.ja
+      - LANG=ja_JP.UTF-8
+      - NLS_LANG=Japanese_Japan.AL32UTF8 # sqlplusの日本語化でこの環境変数が必要になります。
+      - ORACLE_PWD=pass # パスワードは適宜指定します。
+    ports:
+      - "1521:1521"
+    volumes:
+      - ./src:/opt/oracle/oradata
+    networks:
+      external_11:
 
 volumes:
   db-data:
-  pgadmin-data:
+networks:
+  external_11:
+      driver: bridge
+ 
+
+
